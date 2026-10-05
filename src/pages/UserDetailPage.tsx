@@ -1,21 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchUsers } from "../fetchUsers";
 import { useParams } from "react-router-dom";
 import UserDetailCard from "../components/UserDetailCard";
+import { useUsers } from "../hooks/useUsers";
 
 const UserDetailPage = () => {
     const { id } = useParams();
     const userId = Number(id);
 
-    const {
-        data: users,
-        isLoading,
-        error,
-    } = useQuery({
-        queryKey: ["usersCache"],
-        queryFn: fetchUsers,
-        staleTime: 300000,
-    });
+    const { data: users, isLoading, error } = useUsers();
 
     if (isLoading) return <p>Laddar användare...</p>;
     if (error) return <p>Ett fel uppstod: {error.message}</p>;
