@@ -1,15 +1,46 @@
 import type { User } from "../types/User";
 
 const fetchUsers = async (): Promise<User[]> => {
-    const res = await fetch(
-        "https://api-userapi.onrender.com/api/users/getUsers",
-        {
-            headers: {
-                "x-api-key": "elev-hemlighet-2026",
+    let res: Response;
+
+    try {
+        res = await fetch(
+            "https://api-userapi.onrender.com/api/users/getUsers",
+            {
+                headers: {
+                    "x-api-key": "elev-hemlighet-2026",
+                },
             },
-        },
-    );
-    if (!res.ok) throw new Error("Nätverksfel: " + res.status);
+        );
+    } catch {
+        throw new Error(
+            "Couldn't connect. Please check your internet connection and try again.",
+        );
+    }
+
+    if (!res.ok) {
+        console.error("Error code: " + res.status);
+        if (res.status === 429)
+            throw new Error(
+                "We've reached the daily limit for requests. Please try again tomorrow.",
+            );
+        if (res.status === 401 || res.status === 403)
+            throw new Error(
+                "We couldn't verify access to the user data. Please contact support.",
+            );
+        if (res.status === 404)
+            throw new Error(
+                "We couldn't find the user data you're looking for.",
+            );
+        if (res.status >= 500)
+            throw new Error(
+                "The server is having problems right now. Please try again in a few minutes.",
+            );
+        throw new Error(
+            "Something went wrong while loading the users. Please try again.",
+        );
+    }
+
     const users = await res.json();
     return users;
 };
