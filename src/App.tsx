@@ -1,4 +1,3 @@
-import "./App.css";
 import UserPage from "./pages/UserPage";
 import Nav from "./components/Nav";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -11,7 +10,7 @@ function App() {
     const location = useLocation();
 
     return (
-        <>
+        <div className="bg-slate-100 min-h-screen">
             <Nav></Nav>
             <ErrorBoundary
                 FallbackComponent={ErrorFallback}
@@ -26,7 +25,7 @@ function App() {
                     ></Route>
                 </Routes>
             </ErrorBoundary>
-        </>
+        </div>
     );
 }
 
