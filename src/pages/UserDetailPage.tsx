@@ -10,12 +10,35 @@ const UserDetailPage = () => {
     const { data: users, isLoading, error } = useUsers();
 
     if (isLoading)
-        return <PulseLoader color="#209b4a" speedMultiplier={0.75} />;
-    if (error) return <p>Something went wrong: {error.message}</p>;
-    if (!users || users.length === 0) return <p>No users were found.</p>;
+        return (
+            <div className="flex justify-center p-12">
+                <PulseLoader color="#209b4a" speedMultiplier={0.75} />
+            </div>
+        );
+
+    if (error)
+        return (
+            <div className="flex justify-center p-12">
+                <p className="text-red-500">
+                    Something went wrong: {error.message}
+                </p>
+            </div>
+        );
+
+    if (!users || users.length === 0)
+        return (
+            <div className="flex justify-center p-12">
+                <p className="text-red-500">No users were found.</p>
+            </div>
+        );
 
     const user = users.find(u => u.id === userId);
-    if (!user) return <p>No user was found.</p>;
+    if (!user)
+        return (
+            <div className="flex justify-center p-12">
+                <p className="text-red-500">No user was found.</p>
+            </div>
+        );
 
     return <UserDetailCard user={user} />;
 };

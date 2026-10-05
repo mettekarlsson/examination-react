@@ -7,11 +7,18 @@ interface UserCardProps {
 
 const UserCard = ({ user }: UserCardProps) => {
     return (
-        <li>
-            <h1>Name: {user.profile.name}</h1>
-            <h4>Username: {user.username}</h4>
-            <h4>Email: {user.profile.email}</h4>
-            <Link to={`/users/${user.id}`}>Läs mer</Link>
+        <li className="flex flex-col gap-1 rounded-xl border border-black/10 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+            <h2 className="text-xl font-bold text-slate-800">
+                {user.profile.name}
+            </h2>
+            <p className="text-sm text-slate-500">@{user.username}</p>
+            <p className="text-sm text-slate-600">{user.profile.email}</p>
+            <Link
+                to={`/users/${user.id}`}
+                className="mt-3 w-fit rounded-full bg-blue-500 px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-blue-600"
+            >
+                More info
+            </Link>
         </li>
     );
 };

@@ -1,8 +1,8 @@
 const HomePage = () => {
     return (
-        <>
-            <h1>Welcome!</h1>
-        </>
+        <div className="flex justify-center p-15">
+            <h1 className="font-extrabold text-6xl">Welcome!</h1>
+        </div>
     );
 };
 
