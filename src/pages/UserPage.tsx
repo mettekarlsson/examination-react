@@ -1,17 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchUsers } from "../fetchUsers";
 import UserList from "../components/UserList";
+import { useUsers } from "../hooks/useUsers";
 
 const UserPage = () => {
-    const {
-        data: users,
-        isLoading,
-        error,
-    } = useQuery({
-        queryKey: ["usersCache"],
-        queryFn: fetchUsers,
-        staleTime: 300000,
-    });
+    const { data: users, isLoading, error } = useUsers();
 
     if (isLoading) return <p>Laddar användare...</p>;
     if (error) return <p>Ett fel uppstod: {error.message}</p>;
