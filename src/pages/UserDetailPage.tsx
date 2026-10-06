@@ -4,7 +4,11 @@ import { useUsers } from "../hooks/useUsers";
 import { PulseLoader } from "react-spinners";
 
 const UserDetailPage = () => {
+    // useParams returns the :id from the URL, always as a string (or undefined)
     const { id } = useParams();
+
+    // Converted to a number so it can be compared with user.id (a number).
+    // Something like /users/abc becomes NaN, which matches no user and is handled below
     const userId = Number(id);
 
     const { data: users, isLoading, error } = useUsers();
@@ -16,6 +20,7 @@ const UserDetailPage = () => {
             </div>
         );
 
+    // API errors: error.message is the friendly message thrown in fetchUsers.
     if (error)
         return (
             <div className="flex justify-center p-12">
@@ -32,6 +37,7 @@ const UserDetailPage = () => {
             </div>
         );
 
+    // find returns undefined if no user has that id (e.g. /users/999)
     const user = users.find(u => u.id === userId);
     if (!user)
         return (
