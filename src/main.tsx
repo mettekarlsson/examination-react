@@ -5,7 +5,7 @@ import App from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 
-// Skapa en klient för tanStack
+//Creates a client for tanStack
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
