@@ -1,8 +1,12 @@
 import type { User } from "../types/User";
 
+// Returns a Promise of User[], so the type follows through to useQuery and the pages.
+// Throws an Error with a user-friendly message, which useQuery exposes as `error`.
 const fetchUsers = async (): Promise<User[]> => {
+    // Declared outside the try block so it can be used after it
     let res: Response;
 
+    // The try/catch only wraps fetch itself, so it catches network errors
     try {
         res = await fetch(
             "https://api-userapi.onrender.com/api/users/getUsers",
@@ -19,7 +23,9 @@ const fetchUsers = async (): Promise<User[]> => {
     }
 
     if (!res.ok) {
+        // Technical details are logged for the developer, the user gets a friendly message
         console.error("Error code: " + res.status);
+
         if (res.status === 429)
             throw new Error(
                 "We've reached the daily limit for requests. Please try again tomorrow.",

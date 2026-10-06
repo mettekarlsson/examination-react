@@ -32,6 +32,9 @@ const UserDetailCard = ({ user }: UserDetailCardProps) => {
                     <span className="font-semibold text-slate-800">Theme:</span>{" "}
                     {user.settings.theme}
                 </p>
+                {/* React does not render booleans, so a ternary turns true/false into text.
+                    The same ternary also picks the colour classes (green = on, red = off).
+                    The text stays so colour is not the only thing telling them apart. */}
                 <p className="mt-2 text-slate-600">
                     <span className="font-semibold text-slate-800">
                         Email-notifications:

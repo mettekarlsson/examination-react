@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { User } from "../types/User";
 
+// Props: the card receives one User object from UserList
 interface UserCardProps {
     user: User;
 }
@@ -22,4 +23,5 @@ const UserCard = ({ user }: UserCardProps) => {
         </li>
     );
 };
+
 export default UserCard;

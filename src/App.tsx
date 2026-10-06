@@ -6,12 +6,18 @@ import UserDetailPage from "./pages/UserDetailPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./components/ErrorFallback";
 
+// BrowserRouter and QueryClientProvider are in main.tsx, so hooks like useLocation work here.
 function App() {
+    // Re-renders App on every navigation, which is what makes resetKeys below work
     const location = useLocation();
 
     return (
         <div className="bg-slate-100 min-h-screen">
+            {/* Outside the ErrorBoundary, so the user can still navigate if a page crashes */}
             <Nav></Nav>
+            {/* Catches errors thrown while rendering a page and shows ErrorFallback instead.
+                resetKeys resets the boundary when the URL changes,
+                so navigating away from a crashed page clears the error */}
             <ErrorBoundary
                 FallbackComponent={ErrorFallback}
                 resetKeys={[location.pathname]}

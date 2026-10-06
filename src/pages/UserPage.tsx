@@ -11,6 +11,8 @@ const UserPage = () => {
                 <PulseLoader color="#209b4a" speedMultiplier={0.75} />
             </div>
         );
+
+    // API errors: error.message is the friendly message thrown in fetchUsers
     if (error)
         return (
             <div className="flex justify-center p-12">
