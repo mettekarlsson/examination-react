@@ -46,7 +46,7 @@ const UserDetailCard = ({ user }: UserDetailCardProps) => {
                                 : "bg-red-100 text-red-700"
                         }`}
                     >
-                        {user.settings.notifications.email ? "Ja" : "Nej"}
+                        {user.settings.notifications.email ? "Yes" : "No"}
                     </span>
                 </p>
                 <p className="mt-2 text-slate-600">
@@ -60,7 +60,7 @@ const UserDetailCard = ({ user }: UserDetailCardProps) => {
                                 : "bg-red-100 text-red-700"
                         }`}
                     >
-                        {user.settings.notifications.push ? "Ja" : "Nej"}
+                        {user.settings.notifications.push ? "Yes" : "No"}
                     </span>
                 </p>
             </section>
