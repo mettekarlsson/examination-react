@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import UserDetailPage from "./pages/UserDetailPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./components/ErrorFallback";
+import StatsPage from "./pages/StatsPage";
 
 // BrowserRouter and QueryClientProvider are in main.tsx, so hooks like useLocation work here.
 function App() {
@@ -29,6 +30,7 @@ function App() {
                         path="/users/:id"
                         element={<UserDetailPage />}
                     ></Route>
+                    <Route path="/stats" element={<StatsPage />}></Route>
                 </Routes>
             </ErrorBoundary>
         </div>
